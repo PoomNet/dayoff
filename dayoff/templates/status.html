@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <div >
+      <table>
+          <tr>
+              <td>
+                  <p>ประเภท</p>
+              </td>
+              <td>
+                  <p>สาเหตุ</p>
+              </td>
+              <td>
+                  <p>ตั้งแต่วันที่</p>
+              </td>
+              <td>
+                  <p>ถึงวันที่</p>
+              </td>
+              <td>
+                  <p>สถานะ</p>
+              </td>
+          </tr>
+          <tr v-for="stat in status_user">
+                <td>
+                  <p>[[stat.type]]</p>
+              </td>
+              <td>
+                  <p>[[stat.reason]]</p>
+              </td>
+              <td>
+                  <p>[[stat.date_start]]</p>
+              </td>
+              <td>
+                  <p>[[stat.date_end]]</p>
+              </td>
+              <td>
+                  <p>[[stat.approve_status]]</p>
+              </td>
+          </tr>
+      </table>
+
+      </div>
+    <a href="{% url 'formoff' %}">go</a>
+</div>
+<script src="{% static 'vue.js' %}"></script>
+<script type='text/javascript'>
+    var status1 = {{ stat|safe }};
+</script>
+<script>
+  var app = new Vue({
+    delimiters: ['[[', ']]'],
+    el: '#app',
+    data(){
+        return({
+            status_user : status1
+        })
+    }
+    })
+</script>
+</body>
+
+</html>

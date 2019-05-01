@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form method="post" action="{% url 'formoff' %}">
+        {% csrf_token %}
+        <table>
+            <tr>
+                <td><label id="{{form.reason.id_for_label}}">{{form.reason.label}}</label></td>
+                <td>{{form.reason.errors}}{{form.reason}}</td>
+                </tr>
+            <tr>
+                <td><label id="{{form.type.id_for_label}}">{{form.type.label}}</label> </td>
+                <td>{{form.type.errors}}{{form.type}}</td>
+            </tr>
+             <tr>
+                <td><label id="{{form.startdate.id_for_label}}">{{form.startdate.label}}</label> </td>
+                <td>{% if form.non_field_errors %}
+        {{form.non_field_errors}}
+        {% endif %}{{form.startdate}}</td>
+            </tr>
+            <tr>
+                <td><label id="{{form.enddate.id_for_label}}">{{form.enddate.label}}</label> </td>
+                <td>{% if form.non_field_errors %}
+        {{form.non_field_errors}}
+        {% endif %}{{form.enddate}}</td>
+            </tr>
+        </table>
+        <input type="submit" value="submit">
+        <a href="{% url 'logout' %}">logout</a>
+    </form>
+<a href="{% url 'status' %}">go</a>
+</body>
+</html>
